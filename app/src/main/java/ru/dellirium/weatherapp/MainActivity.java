@@ -1,8 +1,12 @@
 package ru.dellirium.weatherapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,24 +16,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i("MainActivity", "Запуск приложения");
-
-        TextView temperatureText = findViewById(R.id.temperature);
-        String temperature = getString(R.string.temperature);
-        temperature = String.format(temperature, 5);
-        temperatureText.setText(temperature);
-
-
-        TextView humidityText = findViewById(R.id.humidity);
-        String humidity = getString(R.string.humidity);
-        humidity = String.format(humidity, 79);
-        humidityText.setText(humidity);
-
-        TextView cloudinessText = findViewById(R.id.cloudiness);
-        String cloudiness = getString(R.string.cloudiness);
-        cloudiness = String.format(cloudiness, "Высокая");
-        cloudinessText.setText(cloudiness);
-
     }
 
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button:
+                CheckBox humidityCheckbox = findViewById(R.id.humidityCheckbox);
+                CheckBox cloudinessCheckbox = findViewById(R.id.cloudinessCheckbox);
+                EditText townTextField = findViewById(R.id.editText);
+                Intent intent = new Intent(this, WeatherShow.class);
+                intent.putExtra("TownName", townTextField.getText().toString());
+                intent.putExtra("humidityCheckbox", humidityCheckbox.isChecked());
+                intent.putExtra("cloudinessCheckbox", cloudinessCheckbox.isChecked());
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+    }
 
 }
