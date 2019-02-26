@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">WeatherApp</string>
     <string name="weather">Погода</string>
+    <string name="temperature">Температура: %d C°</string>
+    <string name="humidity">Влажность: %d %%</string>
+    <string name="cloudiness">Облачность: %s</string>
 </resources>
