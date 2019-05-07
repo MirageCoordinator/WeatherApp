@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 public class FragmentMain extends Fragment {
 
@@ -29,9 +30,9 @@ public class FragmentMain extends Fragment {
             public void onClick(View v) {
                 CheckBox humidityCheckbox = getView().findViewById(R.id.humidityCheckbox);
                 CheckBox cloudinessCheckbox = getView().findViewById(R.id.cloudinessCheckbox);
-                EditText townTextField = getView().findViewById(R.id.editText);
+                Spinner townTextField = getView().findViewById(R.id.editText);
                 Intent intent = new Intent(getActivity(), ActivityWeatherShow.class);
-                intent.putExtra("TownName", townTextField.getText().toString());
+                intent.putExtra("TownName", townTextField.getSelectedItem().toString());
                 intent.putExtra("humidityCheckbox", humidityCheckbox.isChecked());
                 intent.putExtra("cloudinessCheckbox", cloudinessCheckbox.isChecked());
                 startActivity(intent);
