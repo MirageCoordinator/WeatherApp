@@ -4,8 +4,16 @@
     <string name="temperature">Температура: %d C°</string>
     <string name="humidity">Влажность: %d %%</string>
     <string name="cloudiness">Облачность: %s</string>
-    <string name="enter_town">Введите город...</string>
+    <string name="enter_town">Введите город…</string>
     <string name="show_cloudiness">Показать облачность</string>
     <string name="show_humidity">Показать влажность</string>
     <string name="show_button">Показать</string>
+
+    <string-array name="Cities">
+        <item>Москва</item>
+        <item>Санкт-Петербург</item>
+        <item>Екатеринбург</item>
+        <item>Новосибирск</item>
+        <item>Самара</item>
+    </string-array>
 </resources>

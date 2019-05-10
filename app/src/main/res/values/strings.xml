@@ -8,4 +8,12 @@
     <string name="show_humidity">Show humidity</string>
     <string name="show_cloudiness">Show cloudiness</string>
     <string name="show_button">show</string>
+
+    <string-array name="Cities">
+        <item>Moscow</item>
+        <item>St. Petersburg</item>
+        <item>Ekaterinburg</item>
+        <item>Novosibirsk</item>
+        <item>Samara</item>
+    </string-array>
 </resources>

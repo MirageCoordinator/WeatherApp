@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="ru.dellirium.weatherapp.FragmentMain"
+        android:name="ru.dellirium.weatherapp.FragmentWeatherShow"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
