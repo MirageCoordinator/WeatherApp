@@ -1,17 +1,21 @@
 package ru.dellirium.weatherapp;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.Spinner;
 
 public class FragmentMain extends Fragment {
+    private static final String KEY = "parcelCities";
+    private Parcel currentParcel;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -23,22 +27,55 @@ public class FragmentMain extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (savedInstanceState != null)
+            currentParcel = (Parcel) savedInstanceState.getSerializable(KEY);
+        else
+            currentParcel = new Parcel("Moscow", false, false);
 
         Button button = getView().findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {      // Обработка нажатий
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CheckBox humidityCheckbox = getView().findViewById(R.id.humidityCheckbox);
                 CheckBox cloudinessCheckbox = getView().findViewById(R.id.cloudinessCheckbox);
                 Spinner townTextField = getView().findViewById(R.id.editText);
-                Intent intent = new Intent(getActivity(), ActivityWeatherShow.class);
-                intent.putExtra("TownName", townTextField.getSelectedItem().toString());
-                intent.putExtra("humidityCheckbox", humidityCheckbox.isChecked());
-                intent.putExtra("cloudinessCheckbox", cloudinessCheckbox.isChecked());
-                startActivity(intent);
+                currentParcel = new Parcel(townTextField.getSelectedItem().toString(), humidityCheckbox.isChecked(), cloudinessCheckbox.isChecked());
+                showWeather(currentParcel);
             }
         });
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(KEY, currentParcel);
+    }
 
+    private void showWeather (Parcel parcel) {
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            FragmentWeatherShow fragmentWeatherShow = (FragmentWeatherShow) getFragmentManager().findFragmentById(R.id.weather_fragment);
+
+
+                fragmentWeatherShow = FragmentWeatherShow.create(parcel);
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.weather_fragment, fragmentWeatherShow);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.commit();
+
+
+        } else {
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), ActivityWeatherShow.class);
+                intent.putExtra(FragmentWeatherShow.PARCEL, parcel);
+            startActivity(intent);
+        }
+    }
 }

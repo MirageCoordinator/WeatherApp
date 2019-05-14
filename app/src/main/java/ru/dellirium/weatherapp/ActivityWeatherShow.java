@@ -1,10 +1,9 @@
 package ru.dellirium.weatherapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
+
+import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
 public class ActivityWeatherShow extends AppCompatActivity {
 
@@ -12,5 +11,18 @@ public class ActivityWeatherShow extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_show);
+
+        if (getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE) {
+            finish();
+            return;
+        }
+
+        if (savedInstanceState == null) {
+            FragmentWeatherShow details = new FragmentWeatherShow();
+            details.setArguments(getIntent().getExtras());
+            getFragmentManager().beginTransaction()
+                    .add(R.id.weather_show_fragment, details)
+                    .commit();
+        }
     }
 }

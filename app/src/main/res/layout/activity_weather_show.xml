@@ -6,9 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="ru.dellirium.weatherapp.FragmentWeatherShow"
+    <FrameLayout
+        android:id="@+id/weather_show_fragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
