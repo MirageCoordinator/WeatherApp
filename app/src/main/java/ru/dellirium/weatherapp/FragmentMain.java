@@ -49,6 +49,23 @@ public class FragmentMain extends Fragment {
                 showWeather(currentParcel);
             }
         });
+
+        Button about = getView().findViewById(R.id.about);
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.weather_fragment, new FragmentAbout());
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                    ft.commit();
+                } else {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), ActivityAbout.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
@@ -60,10 +77,7 @@ public class FragmentMain extends Fragment {
     private void showWeather (Parcel parcel) {
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            FragmentWeatherShow fragmentWeatherShow = (FragmentWeatherShow) getFragmentManager().findFragmentById(R.id.weather_fragment);
-
-
-                fragmentWeatherShow = FragmentWeatherShow.create(parcel);
+            FragmentWeatherShow fragmentWeatherShow = FragmentWeatherShow.create(parcel);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.weather_fragment, fragmentWeatherShow);
@@ -78,4 +92,5 @@ public class FragmentMain extends Fragment {
             startActivity(intent);
         }
     }
+
 }
