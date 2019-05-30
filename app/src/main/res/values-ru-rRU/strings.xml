@@ -8,6 +8,8 @@
     <string name="show_cloudiness">Показать облачность</string>
     <string name="show_humidity">Показать влажность</string>
     <string name="show_button">Показать</string>
+    <string name="about">О приложении</string>
+    <string name="back">Назад</string>
 
     <string-array name="Cities">
         <item>Москва</item>

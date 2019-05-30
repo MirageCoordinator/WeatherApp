@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/weather_show_fragment"
+        android:id="@+id/about_fragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"

@@ -3,11 +3,14 @@
     <string name="temperature">Temperature: %d C°</string>
     <string name="humidity">Humidity: %d %%</string>
     <string name="cloudiness">Cloudiness: %s</string>
-    <string name="enter_town">Enter town...</string>
+    <string name="enter_town">Enter town…</string>
     <string name="weather">Weather</string>
     <string name="show_humidity">Show humidity</string>
     <string name="show_cloudiness">Show cloudiness</string>
     <string name="show_button">show</string>
+    <string name="about">About</string>
+    <string name="crafted_by_dellirium" translatable="false">Crafted by Dellirium</string>
+    <string name="back">Back</string>
 
     <string-array name="Cities">
         <item>Moscow</item>
