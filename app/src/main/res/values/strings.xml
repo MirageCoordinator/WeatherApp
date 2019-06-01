@@ -11,6 +11,9 @@
     <string name="about">About</string>
     <string name="crafted_by_dellirium" translatable="false">Crafted by Dellirium</string>
     <string name="back">Back</string>
+    <string name="weather_now">Weather now</string>
+    <string name="temperature_now">Temperature now:</string>
+    <string name="humidity_now">Humidity now:</string>
 
     <string-array name="Cities">
         <item>Moscow</item>

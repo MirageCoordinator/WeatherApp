@@ -2,8 +2,13 @@ package ru.dellirium.weatherapp;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -12,10 +17,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 
 public class FragmentMain extends Fragment {
     private static final String KEY = "parcelCities";
     private Parcel currentParcel;
+
+    private SensorManager sensorManager;
+    TextView weatherNowTemperature;
+    TextView weatherNowHumidity;
+    private Sensor sensorTemperature;
+    private Sensor sensorHumidity;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -33,6 +46,36 @@ public class FragmentMain extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        drawMainWeatherWindow(savedInstanceState);
+        weatherNowTemperature = getActivity().findViewById(R.id.weatherNowTemperature);
+        weatherNowHumidity = getActivity().findViewById(R.id.weatherNowHumidity);
+
+        getSensors();
+    }
+
+    private void getSensors() {
+        sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        sensorTemperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        sensorManager.registerListener(listenerTemperature, sensorTemperature,
+                SensorManager.SENSOR_DELAY_NORMAL);
+        sensorHumidity = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+        sensorManager.registerListener(listenerHumidity, sensorHumidity,
+                SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    private void showTemperatureSensor(SensorEvent event){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Temperature now: ").append(event.values[0]).append(" ℃");
+        weatherNowTemperature.setText(stringBuilder);
+    }
+
+    private void showHumiditySensor(SensorEvent event){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Humidity now: ").append(event.values[0]).append("%");
+        weatherNowHumidity.setText(stringBuilder);
+    }
+
+    private void drawMainWeatherWindow(Bundle savedInstanceState) {
         if (savedInstanceState != null)
             currentParcel = (Parcel) savedInstanceState.getSerializable(KEY);
         else
@@ -93,4 +136,25 @@ public class FragmentMain extends Fragment {
         }
     }
 
+    SensorEventListener listenerTemperature = new SensorEventListener() {
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            showTemperatureSensor(event);
+        }
+    };
+
+    SensorEventListener listenerHumidity = new SensorEventListener() {
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            showHumiditySensor(event);
+        }
+    };
 }
