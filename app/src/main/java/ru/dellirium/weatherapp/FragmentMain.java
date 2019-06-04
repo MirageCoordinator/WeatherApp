@@ -19,6 +19,8 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 
 public class FragmentMain extends Fragment {
     private static final String KEY = "parcelCities";
@@ -54,6 +56,7 @@ public class FragmentMain extends Fragment {
     }
 
     private void getSensors() {
+
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         sensorTemperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
         sensorManager.registerListener(listenerTemperature, sensorTemperature,
@@ -81,11 +84,11 @@ public class FragmentMain extends Fragment {
         else
             currentParcel = new Parcel("Moscow", false, false);
 
-        Button button = getView().findViewById(R.id.button);
+        Button button = Objects.requireNonNull(getView()).findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CheckBox humidityCheckbox = getView().findViewById(R.id.humidityCheckbox);
+                CheckBox humidityCheckbox = Objects.requireNonNull(getView()).findViewById(R.id.humidityCheckbox);
                 CheckBox cloudinessCheckbox = getView().findViewById(R.id.cloudinessCheckbox);
                 Spinner townTextField = getView().findViewById(R.id.editText);
                 currentParcel = new Parcel(townTextField.getSelectedItem().toString(), humidityCheckbox.isChecked(), cloudinessCheckbox.isChecked());
