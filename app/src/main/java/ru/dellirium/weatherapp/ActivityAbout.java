@@ -19,7 +19,7 @@ public class ActivityAbout extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             FragmentAbout details = new FragmentAbout();
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.about_fragment, details)
                     .commit();
         }

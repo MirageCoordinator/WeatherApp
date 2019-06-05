@@ -20,7 +20,7 @@ public class ActivityWeatherShow extends AppCompatActivity {
         if (savedInstanceState == null) {
             FragmentWeatherShow details = new FragmentWeatherShow();
             details.setArguments(getIntent().getExtras());
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.weather_show_fragment, details)
                     .commit();
         }

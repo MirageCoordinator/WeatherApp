@@ -1,13 +1,14 @@
 package ru.dellirium.weatherapp;
 
 import android.content.res.Configuration;
-import android.opengl.Visibility;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import java.util.Objects;
 
 public class FragmentAbout extends Fragment {
 
@@ -23,7 +24,7 @@ public class FragmentAbout extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Button goBackButton = getView().findViewById(R.id.back);
+            Button goBackButton = Objects.requireNonNull(getView()).findViewById(R.id.back);
             goBackButton.setVisibility(View.INVISIBLE);
         }
     }
