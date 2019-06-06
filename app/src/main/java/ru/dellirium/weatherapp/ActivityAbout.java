@@ -2,7 +2,6 @@ package ru.dellirium.weatherapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
@@ -25,7 +24,4 @@ public class ActivityAbout extends AppCompatActivity {
         }
     }
 
-    public void goBack(View view) {
-        finish();
-    }
 }

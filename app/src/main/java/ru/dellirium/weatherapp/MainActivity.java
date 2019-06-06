@@ -3,6 +3,8 @@ package ru.dellirium.weatherapp;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,23 +32,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        int id = menuItem.getItemId();
+        Fragment fragment = null;
+        Class fragmentClass;
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                fragmentClass = FragmentMain.class;
+                break;
 
-        } else if (id == R.id.nav_slideshow) {
+            case R.id.nav_about:
+                fragmentClass = FragmentAbout.class;
+                break;
 
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            default:
+                fragmentClass = FragmentMain.class;
         }
+
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        if (fragment != null) {
+            fragmentManager.beginTransaction().replace(R.id.main_fragment, fragment).commit();
+        }
+
+        menuItem.setChecked(true);
+        setTitle(menuItem.getTitle());
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            drawer.openDrawer(GravityCompat.START);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

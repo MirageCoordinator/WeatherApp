@@ -96,23 +96,6 @@ public class FragmentMain extends Fragment {
                 showWeather(currentParcel);
             }
         });
-
-        Button about = getView().findViewById(R.id.about);
-        about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.weather_fragment, new FragmentAbout());
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                    ft.commit();
-                } else {
-                    Intent intent = new Intent();
-                    intent.setClass(getActivity(), ActivityAbout.class);
-                    startActivity(intent);
-                }
-            }
-        });
     }
 
     @Override
