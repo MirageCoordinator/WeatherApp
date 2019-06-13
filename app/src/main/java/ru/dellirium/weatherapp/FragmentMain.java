@@ -114,7 +114,6 @@ public class FragmentMain extends Fragment {
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ft.commit();
 
-
         } else {
             Intent intent = new Intent();
             intent.setClass(getActivity(), ActivityWeatherShow.class);
