@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name" translatable="false">WeatherApp</string>
     <string name="temperature">Temperature:</string>
-    <string name="humidity">Humidity: %d %%</string>
-    <string name="cloudiness">Cloudiness: %s</string>
+    <string name="humidity">Humidity</string>
+    <string name="cloudiness">Cloudiness</string>
     <string name="enter_town">Enter town…</string>
     <string name="weather">Weather</string>
     <string name="show_humidity">Show humidity</string>

@@ -2,8 +2,8 @@
 <resources>
     <string name="weather">Погода</string>
     <string name="temperature">Температура:</string>
-    <string name="humidity">Влажность: %d %%</string>
-    <string name="cloudiness">Облачность: %s</string>
+    <string name="humidity">Влажность:</string>
+    <string name="cloudiness">Облачность:</string>
     <string name="enter_town">Введите город…</string>
     <string name="show_cloudiness">Показать облачность</string>
     <string name="show_humidity">Показать влажность</string>

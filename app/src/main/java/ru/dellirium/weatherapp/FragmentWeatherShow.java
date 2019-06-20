@@ -15,6 +15,8 @@ import ru.dellirium.weatherapp.openWeather.WeatherRequestRestModel;
 
 public class FragmentWeatherShow extends Fragment {
     TextView temperatureText;
+    TextView humidityText;
+    TextView cloudinessText;
     WeatherRequestRestModel model = new WeatherRequestRestModel();
 
     public static final String PARCEL = "parcel";
@@ -43,20 +45,13 @@ public class FragmentWeatherShow extends Fragment {
         boolean humidityCheckbox = getParcel().isHumidityCheckbox();
         boolean cloudinessCheckbox = getParcel().isCloudinessCheckbox();
 
+        humidityText = layout.findViewById(R.id.humidity);
         if (humidityCheckbox) {
-            TextView humidityText = layout.findViewById(R.id.humidity);
-            String humidity = getString(R.string.humidity);
-            humidity = String.format(humidity, 79);
-            humidityText.setText(humidity);
             humidityText.setVisibility(View.VISIBLE);
-
         }
 
+        cloudinessText = layout.findViewById(R.id.cloudiness);
         if (cloudinessCheckbox) {
-            TextView cloudinessText = layout.findViewById(R.id.cloudiness);
-            String cloudiness = getString(R.string.cloudiness);
-            cloudiness = String.format(cloudiness, "Высокая");
-            cloudinessText.setText(cloudiness);
             cloudinessText.setVisibility(View.VISIBLE);
         }
 
@@ -81,6 +76,8 @@ public class FragmentWeatherShow extends Fragment {
                         if (response.body() != null && response.isSuccessful()) {
                             model = response.body();
                             setTemperature();
+                            setCloudiness();
+                            setHumidity();
                         }
                     }
 
@@ -91,6 +88,17 @@ public class FragmentWeatherShow extends Fragment {
                 });
 
     }
+
+    private void setHumidity() {
+        String text = getString(R.string.humidity) + ": " + model.main.humidity;
+        humidityText.setText(text);
+    }
+
+    private void setCloudiness() {
+        String text = getString(R.string.cloudiness) + ": " + model.weather[0].description;
+        cloudinessText.setText(text);
+    }
+
     private void setTemperature() {
         String text = getString(R.string.temperature) + ": " + model.main.temp;
         temperatureText.setText(text);
