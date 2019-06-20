@@ -17,6 +17,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+                createDrawer();
+
+        Fragment fragment = null;
+        try {
+            fragment = FragmentMain.class.newInstance();
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.main_fragment, fragment).commit();
+    }
+
+    private void createDrawer() {
         setContentView(R.layout.drawer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

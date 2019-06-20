@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="weather">Погода</string>
-    <string name="temperature">Температура: %d C°</string>
+    <string name="temperature">Температура:</string>
     <string name="humidity">Влажность: %d %%</string>
     <string name="cloudiness">Облачность: %s</string>
     <string name="enter_town">Введите город…</string>

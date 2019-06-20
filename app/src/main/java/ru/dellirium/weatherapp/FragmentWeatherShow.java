@@ -13,8 +13,6 @@ import retrofit2.Response;
 import ru.dellirium.weatherapp.openWeather.OpenWeatherSingleton;
 import ru.dellirium.weatherapp.openWeather.WeatherRequestRestModel;
 
-
-
 public class FragmentWeatherShow extends Fragment {
     TextView temperatureText;
     WeatherRequestRestModel model = new WeatherRequestRestModel();
@@ -51,6 +49,7 @@ public class FragmentWeatherShow extends Fragment {
             humidity = String.format(humidity, 79);
             humidityText.setText(humidity);
             humidityText.setVisibility(View.VISIBLE);
+
         }
 
         if (cloudinessCheckbox) {

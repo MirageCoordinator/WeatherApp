@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/main_fragment"
         android:name="ru.dellirium.weatherapp.FragmentMain"
         android:layout_width="0dp"

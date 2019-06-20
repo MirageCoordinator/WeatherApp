@@ -1,6 +1,4 @@
 package ru.dellirium.weatherapp;
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -21,7 +19,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Objects;
-
 
 public class FragmentMain extends Fragment {
     private static final String KEY = "parcelCities";
