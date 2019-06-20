@@ -73,7 +73,7 @@ public class FragmentWeatherShow extends Fragment {
 
     private void requestRetrofit(String city) {
         OpenWeatherSingleton.getInstance().getAPI().loadWeather(city + ",ru",
-                "b6907d289e10d714a6e88b30761fae22", "metric")
+                "d0a2f2146ff0513ae29abdf52bc82cec", "metric")
                 .enqueue(new Callback<WeatherRequestRestModel>() {
                     @Override
                     public void onResponse(@NonNull Call<WeatherRequestRestModel> call,
